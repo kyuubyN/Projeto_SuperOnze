@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Super-Onze</title>
+    <link
+      rel="shortcut icon"
+      href="Design/super_onze_by_kosmusko_de64jl2-pre.png"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Josefin Sans", sans-serif;
+        background-color: rgb(34, 31, 31);
+      }
+      .endou {
+        height: 400px;
+      }
+      .card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 400px;
+        width: 300px;
+        transform: translate(-50%, -50%);
+        transform-style: preserve-3d;
+        perspective: 600px;
+        transition: 0.5s;
+      }
+
+      .card:hover .card-front {
+        transform: rotateX(-180deg);
+      }
+
+      .card:hover .card-back {
+        transform: rotate(0deg);
+      }
+
+      .card-front {
+        height: 100%;
+        width: 100%;
+        background: url("Design/endou.png") no-repeat;
+        background-position: 50% 50%;
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #ffbf5e;
+        backface-visibility: hidden;
+        transform: rotateX(0deg);
+        transition: 0.5s;
+        border-radius: 10%;
+        box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.52);
+      }
+
+      .card-back {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #ffbf5e;
+        backface-visibility: hidden;
+        transform: rotateX(180deg);
+        transition: 0.5s;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        border-radius: 10%;
+        box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.52);
+      }
+
+      .card-back h2 {
+        font-size: 20px;
+      }
+
+      .card-back span {
+        font-size: 14px;
+        font-weight: lighter;
+      }
+
+      main video {
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        position: inherit;
+        object-fit: cover;
+        opacity: 70%;
+      }
+      header {
+        background-color: rgb(34, 31, 31);
+        height: 12vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-transform: uppercase;
+      }
+
+      header img {
+        height: 80px;
+        border-radius: 50%;
+      }
+
+      header a {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        font-size: 18px;
+      }
+      .botao {
+        height: 2rem;
+        width: 15rem;
+        border: 3px solid orange;
+        background: transparent;
+        color: white;
+        font-weight: bold;
+        position: relative;
+        cursor: pointer;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+      }
+
+      .botao::before,
+      .botao::after {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border: inherit;
+        transition: 0.5s ease;
+      }
+      .botao::before {
+        left: -15px;
+        top: -15px;
+        border-width: 3px 0 0 3px;
+      }
+      .botao::after {
+        right: -15px;
+        bottom: -15px;
+        border-width: 0 3px 3px 0;
+      }
+
+      .botao:hover::after,
+      .botao:hover::before {
+        width: calc(100% + 27px);
+        height: calc(100% + 27px);
+      }
+
+      .pe {
+        background-color: rgb(34, 31, 31);
+        height: 120px;
+        margin-top: -5px;
+        border: 3px solid orange;
+        position: relative;
+
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-transform: none;
+      }
+
+      .pe a {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        font-size: 14px;
+      }
+      .button {
+        height: 2rem;
+        width: 15rem;
+        border: 3px solid rgb(0, 195, 255);
+        background: transparent;
+        color: white;
+        font-weight: bold;
+        position: relative;
+        cursor: pointer;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        font-size: 18px;
+      }
+
+      .button::before,
+      .button::after {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border: inherit;
+        transition: 0.5s ease;
+      }
+      .button::before {
+        left: -15px;
+        top: -15px;
+        border-width: 3px 0 0 3px;
+      }
+      .button::after {
+        right: -15px;
+        bottom: -15px;
+        border-width: 0 3px 3px 0;
+      }
+
+      .button:hover::after,
+      .button:hover::before {
+        width: calc(100% + 27px);
+        height: calc(100% + 27px);
+      }
+
+      .botaozin {
+        margin: 0;
+
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .botaozin {
+        height: 3rem;
+        width: 20rem;
+        border: 3px solid rgb(255, 174, 0);
+        background: rgb(255, 72, 0);
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        cursor: pointer;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        font-size: 18px;
+      }
+
+      .botaozin::before,
+      .botaozin::after {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border: inherit;
+        transition: 0.5s ease;
+      }
+      .botaozin::before {
+        left: -15px;
+        top: -15px;
+        border-width: 3px 0 0 3px;
+      }
+      .botaozin::after {
+        right: -15px;
+        bottom: -15px;
+        border-width: 0 3px 3px 0;
+      }
+
+      .botaozin:hover::after,
+      .botaozin:hover::before {
+        width: calc(100% + 27px);
+        height: calc(100% + 27px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <img
+        src="Design/super_onze_by_kosmusko_de64jl2-pre.png"
+        alt="imagem super onze"
+      />
+
+      <a href="">Informações do anime</a>
+      <a href="">Notícias</a>
+      <a href="">Personagens</a>
+      <a href="">Outros</a>
+      <a
+        href="https://github.com/kyuubyN"
+        style="font-size: 12px"
+        target="_blank"
+      >
+        <button class="botao">@kyuubyN ou Kaue Oliveira</button>
+      </a>
+    </header>
+    <main>
+      <section>
+        <article>
+          <video
+            src="Design/X2Download.com-inazuma eleven - edit-(720p60).mp4"
+            muted
+            autoplay
+            loop
+          ></video>
+        </article>
+        <article>
+          <div class="card">
+            <div class="card-front"></div>
+            <div class="card-back">
+              <h2>
+                Satoru Endo<br /><br /><br /><br /><span
+                  >Satoru Endo na Dublagem é o Protagonista Da Série Inazuma
+                  Eleven (Super Onze, no Brasil). Ele Foi Goleiro, Capitão e
+                  Líbero do time da Raimon Nas Primeira e Segunda Temporada. Ele
+                  foi o Goleiro Principal e Capitão dos Super Onze do Japão Na
+                  Terceira Temporada.</span
+                >
+              </h2>
+            </div>
+          </div>
+        </article>
+        <button class="botaozin">Iniciar</button>
+      </section>
+    </main>
+    <footer class="pe">
+      <a href="https://github.com/kyuubyN" target="_blank"
+        >Feito por: Kaue Oliveira Costa</a
+      >
+      <a href="">Notícias</a>
+      <a href="">Personagens</a>
+      <a href="">Outros</a>
+      <a
+        href="https://www.linkedin.com/in/kau%C3%AA-oliveira-costa-620570229"
+        target="_blank"
+      >
+        <button class="button">My LinkedIn</button>
+      </a>
+    </footer>
+  </body>
+</html>
